@@ -13,7 +13,8 @@ const useStyles = makeStyles({
     minWidth: 300,
   },
   vibeSlider: {
-    margin: 24,
+    marginLeft: 24,
+    marginRight: 24,
   },
 })
 
