@@ -39,7 +39,8 @@ const Layout = ({ children }) => {
             <footer style={{ paddingTop: 10 }}>
               © {new Date().getFullYear()}, Built with{` `}
               <a href="https://www.gatsbyjs.org">Gatsby</a> and{' '}
-              <a href="http://material-ui.com/">Material UI</a>
+              <a href="http://material-ui.com/">Material UI</a>. Code available
+              on Github @ <a href="https://github.com/tnxa/mosa">tnxa/mosa</a>
             </footer>
           </div>
         </div>
