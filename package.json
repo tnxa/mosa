@@ -1,0 +1,57 @@
+{
+  "name": "mosa",
+  "private": true,
+  "description": "web ui for osr hardware",
+  "version": "0.1.0",
+  "author": "tnxa",
+  "dependencies": {
+    "@material-ui/core": "^4.0.1",
+    "@material-ui/icons": "^4.2.0",
+    "@material-ui/styles": "^4.0.1",
+    "gatsby": "^2.23.1",
+    "gatsby-image": "^2.1.2",
+    "gatsby-plugin-manifest": "^2.4.11",
+    "gatsby-plugin-material-ui": "^2.0.1",
+    "gatsby-plugin-offline": "^2.1.1",
+    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-sharp": "^2.1.2",
+    "gatsby-source-filesystem": "^2.3.10",
+    "gatsby-transformer-sharp": "^2.1.20",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "typeface-roboto": "0.0.54"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "babel-loader": "^8.1.0",
+    "gatsby-plugin-workerize-loader": "^1.3.0",
+    "prettier": "^1.18.2"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tnxa/mosa"
+  },
+  "bugs": {
+    "url": "https://github.com/tnxa/mosa/issues"
+  }
+}
