@@ -84,7 +84,7 @@ export const useSerial = () => {
       })
       writer.releaseLock()
     } else {
-      console.warn('[OSRLOG][WARN] Disconnected, skipping stream write')
+      console.warn('[OSR][WARN] Disconnected, skipping stream write')
     }
   }
 
