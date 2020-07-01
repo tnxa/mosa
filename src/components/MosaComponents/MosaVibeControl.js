@@ -75,11 +75,11 @@ const VibeSlider = props => {
         <Slider
           marks={[
             { value: 0, label: vibe + ' OFF' },
-            { value: 0.999, label: ' MAX' },
+            { value: 999, label: ' MAX' },
           ]}
-          step={0.001}
+          step={1}
           min={0}
-          max={0.999}
+          max={999}
           value={value}
           onChange={(event, val) => handleChange(vibe, val)}
           valueLabelDisplay={connected ? 'on' : 'off'}

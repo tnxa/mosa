@@ -26,72 +26,72 @@ const MosaOutputRangeControl = props => {
         <FormGroup row>
           <Slider
             marks={[
-              { value: 0.1, label: 'L0 @ 0.1' },
-              { value: 0.9, label: '0.9' },
+              { value: 100, label: 'L0 @ 100' },
+              { value: 900, label: '900' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.L0Min, outputRange.L0Max]}
             onChange={(e, value) => handleRangeChange('L0', value)}
           />
           <Slider
             marks={[
-              { value: 0.1, label: 'L1 @ 0.1' },
-              { value: 0.9, label: '0.9' },
+              { value: 100, label: 'L1 @ 100' },
+              { value: 900, label: '900' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.L1Min, outputRange.L1Max]}
             onChange={(e, value) => handleRangeChange('L1', value)}
           />
           <Slider
             marks={[
-              { value: 0.1, label: 'L2 @ 0.1' },
-              { value: 0.9, label: '0.9' },
+              { value: 100, label: 'L2 @ 100' },
+              { value: 900, label: '900' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.L2Min, outputRange.L2Max]}
             onChange={(e, value) => handleRangeChange('L2', value)}
           />
           <Slider
             marks={[
-              { value: 0.1, label: 'R0 @ 0.1' },
-              { value: 1, label: '1' },
+              { value: 100, label: 'R0 @ 100' },
+              { value: 900, label: '900' },
             ]}
-            step={0.01}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.R0Min, outputRange.R0Max]}
             onChange={(e, value) => handleRangeChange('R0', value)}
           />
           <Slider
             marks={[
-              { value: 0.1, label: 'R1 @ 0.1' },
-              { value: 1, label: '1' },
+              { value: 100, label: 'R1 @ 100' },
+              { value: 999, label: '999' },
             ]}
-            step={0.01}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.R1Min, outputRange.R1Max]}
             onChange={(e, value) => handleRangeChange('R1', value)}
           />
           <Slider
             marks={[
-              { value: 0.1, label: 'R2 @ 0.1' },
-              { value: 1, label: '1' },
+              { value: 100, label: 'R2 @ 100' },
+              { value: 999, label: '999' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.R2Min, outputRange.R2Max]}
             onChange={(e, value) => handleRangeChange('R2', value)}
@@ -99,11 +99,11 @@ const MosaOutputRangeControl = props => {
           <Slider
             marks={[
               { value: 0, label: 'V0' },
-              { value: 1, label: 'MAX' },
+              { value: 999, label: 'MAX' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.V0Min, outputRange.V0Max]}
             onChange={(e, value) => handleRangeChange('V0', value)}
@@ -111,11 +111,11 @@ const MosaOutputRangeControl = props => {
           <Slider
             marks={[
               { value: 0, label: 'V1' },
-              { value: 1, label: 'MAX' },
+              { value: 999, label: 'MAX' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.V1Min, outputRange.V1Max]}
             onChange={(e, value) => handleRangeChange('V1', value)}
@@ -123,11 +123,11 @@ const MosaOutputRangeControl = props => {
           <Slider
             marks={[
               { value: 0, label: 'V2' },
-              { value: 1, label: 'MAX' },
+              { value: 999, label: 'MAX' },
             ]}
-            step={0.001}
+            step={1}
             min={0}
-            max={1}
+            max={999}
             valueLabelDisplay="auto"
             value={[outputRange.V2Min, outputRange.V2Max]}
             onChange={(e, value) => handleRangeChange('V2', value)}

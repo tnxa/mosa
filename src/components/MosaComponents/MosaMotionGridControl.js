@@ -28,7 +28,7 @@ export const MosaMotionGridControl = props => {
   const { graphCard, graphGrid } = useStyles()
 
   const [running, setRunning] = useState(false)
-  const [pitch, setPitch] = useState(0.5)
+  const [pitch, setPitch] = useState(500)
 
   const toggleRunning = () => {
     if (connected) setRunning(!running)
@@ -44,9 +44,9 @@ export const MosaMotionGridControl = props => {
     const bbxHeight = boundingBox.bottom - boundingBox.top
     const bbxWidth = boundingBox.right - boundingBox.left
 
-    const L0 = 1 - (event.clientY - boundingBox.top) / bbxHeight
-    const R1 = 1 - (event.clientX - boundingBox.left) / bbxWidth
-    const R2 = clampedNum(pitch * 1000, 0, 999) / 1000 // to prevent scrolling out of bounds
+    const L0 = (1 - (event.clientY - boundingBox.top) / bbxHeight) * 1000
+    const R1 = (1 - (event.clientX - boundingBox.left) / bbxWidth) * 1000
+    const R2 = clampedNum(pitch, 0, 999) // to prevent scrolling out of bounds
 
     return { L0: L0, R1: R1, R2: R2 }
   }
@@ -57,7 +57,7 @@ export const MosaMotionGridControl = props => {
   }
 
   const handleWheelMove = wheelMoveEvent => {
-    const newDepth = clampedFloat(pitch - wheelMoveEvent.deltaY / 1500, 0, 1) // TODO: configure this magic number
+    const newDepth = clampedNum(pitch - wheelMoveEvent.deltaY / 2, 0, 999) // TODO: configure this magic number
     setPitch(newDepth)
     const { L0, R1, R2 } = getCommand(wheelMoveEvent)
     moveToTarget(L0, R1, R2)
@@ -66,9 +66,9 @@ export const MosaMotionGridControl = props => {
   /**
    * Takes target/destination values for L0 and R1, and writes that command to stream
    *
-   * @param {number} L0Target 0-0.999 -- destination for L0
-   * @param {number} R1Target 0-0.999 -- destination for R1
-   * @param {number} R2Target 0-0.999 -- destination for R2
+   * @param {number} L0Target 0-999 -- destination for L0
+   * @param {number} R1Target 0-999 -- destination for R1
+   * @param {number} R2Target 0-999 -- destination for R2
    */
   const moveToTarget = (L0Target, R1Target, R2Target) => {
     if (running) {
@@ -78,7 +78,7 @@ export const MosaMotionGridControl = props => {
           R1: R1Target,
           R2: R2Target,
         },
-        0.05 // a small amount of smoothing // TODO: Paramaterize this?zs
+        0.05 // a small amount of smoothing // TODO: Paramaterize this?
       )
     }
   }

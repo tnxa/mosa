@@ -39,9 +39,9 @@ export const MosaSineControl = props => {
     if (running && connected) {
       if (timer <= 0) timer += 1000 * Math.PI // for clean transitions we need this to be a multiple of Pi
       const newPosition = {
-        L0: (1 + Math.sin(settings.L0Speed * timer)) / 2, // constrained to fractions by control
-        R1: (1 + Math.sin(timer)) / 2,
-        R2: (1 + Math.cos(timer)) / 2,
+        L0: Math.floor((1000 * (1 + Math.sin(settings.L0Speed * timer))) / 2), // constrained to fractions by control
+        R1: Math.floor((1000 * (1 + Math.sin(timer))) / 2),
+        R2: Math.floor((1000 * (1 + Math.cos(timer))) / 2),
       }
 
       commandRobot(newPosition, step / 1000)

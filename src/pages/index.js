@@ -24,12 +24,12 @@ const IndexPage = () => {
   const [connected, setConnected] = useState(false)
 
   const defaultTarget = {
-    L0: 0.5,
-    L1: 0.5,
-    L2: 0.5,
-    R0: 0.5,
-    R1: 0.5,
-    R2: 0.5,
+    L0: 500,
+    L1: 500,
+    L2: 500,
+    R0: 500,
+    R1: 500,
+    R2: 500,
     V0: 0,
     V1: 0,
     V2: 0,
@@ -37,24 +37,24 @@ const IndexPage = () => {
   const [target, setTarget] = useState(defaultTarget)
 
   const [outputRange, setOutputRange] = useState({
-    L0Min: 0.1,
-    L0Max: 0.9,
-    L1Min: 0.1,
-    L1Max: 0.9,
-    L2Min: 0.1,
-    L2Max: 0.9,
-    R0Min: 0.25,
-    R0Max: 0.75,
-    R1Min: 0.25,
-    R1Max: 0.75,
-    R2Min: 0.25,
-    R2Max: 0.75,
+    L0Min: 100,
+    L0Max: 900,
+    L1Min: 100,
+    L1Max: 900,
+    L2Min: 100,
+    L2Max: 900,
+    R0Min: 250,
+    R0Max: 750,
+    R1Min: 250,
+    R1Max: 750,
+    R2Min: 250,
+    R2Max: 750,
     V0Min: 0,
-    V0Max: 0.9,
+    V0Max: 900,
     V1Min: 0,
-    V1Max: 0.9,
+    V1Max: 900,
     V2Min: 0,
-    V2Max: 0.9,
+    V2Max: 900,
   })
 
   const handleConnect = async () => {

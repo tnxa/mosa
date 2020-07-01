@@ -36,7 +36,7 @@ export const MosaMotionControl = props => {
   }
 
   const homeAxes = () => {
-    commandRobot({ L0: 0.5, L1: 0.5, L2: 0.5, R0: 0.5, R1: 0.5, R2: 0.5 }, 1)
+    commandRobot({ L0: 500, L1: 500, L2: 500, R0: 500, R1: 500, R2: 500 }, 1)
   }
 
   return (
@@ -74,7 +74,7 @@ export const MosaMotionControl = props => {
         <HorizontalSlider
           marks={[
             { value: 0, label: 'L2 LEFT' },
-            { value: 0.999, label: 'L2 RIGHT' },
+            { value: 999, label: 'L2 RIGHT' },
           ]}
           connected={connected}
           value={target.L2}
@@ -88,7 +88,7 @@ export const MosaMotionControl = props => {
         <HorizontalSlider
           marks={[
             { value: 0, label: 'R1 LEFT' },
-            { value: 0.999, label: 'R1 RIGHT' },
+            { value: 999, label: 'R1 RIGHT' },
           ]}
           connected={connected}
           value={target.R1}
@@ -101,7 +101,7 @@ export const MosaMotionControl = props => {
         <HorizontalSlider
           marks={[
             { value: 0, label: 'R0 CCW' },
-            { value: 0.999, label: 'R0 CW' },
+            { value: 999, label: 'R0 CW' },
           ]}
           connected={connected}
           value={target.R0}
@@ -129,9 +129,9 @@ const HorizontalSlider = props => {
   return (
     <Slider
       marks={marks}
-      step={0.001}
+      step={1}
       min={0}
-      max={0.999}
+      max={999}
       value={value}
       onChange={handleValueChange}
       valueLabelDisplay={connected ? 'on' : 'off'}
@@ -153,11 +153,11 @@ const VerticalSlider = props => {
         <Slider
           marks={[
             { value: 0, label: axis + ' MIN' },
-            { value: 0.999, label: axis + ' MAX' },
+            { value: 999, label: axis + ' MAX' },
           ]}
-          step={0.001}
+          step={1}
           min={0}
-          max={0.999}
+          max={999}
           orientation="vertical"
           value={value}
           onChange={handleValueChange}
