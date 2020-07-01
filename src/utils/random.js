@@ -14,7 +14,7 @@ export const arbitraryRandom = (min, max) => {
 
 // produces a random value appropriate to the intensity level
 export const intensityScaledRandom = (low, high, intensity) => {
-  const factor = clampedNum(intensity, 0, 1)
+  const factor = clampedFloat(intensity, 0, 1)
 
   const [lowMin, lowMax] = low
   const [highMin, highMax] = high
