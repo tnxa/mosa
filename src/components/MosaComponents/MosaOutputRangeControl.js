@@ -62,8 +62,8 @@ const MosaOutputRangeControl = props => {
           />
           <Slider
             marks={[
-              { value: 100, label: 'R0 @ 100' },
-              { value: 900, label: '900' },
+              { value: 0, label: 'R0' },
+              { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
@@ -74,7 +74,7 @@ const MosaOutputRangeControl = props => {
           />
           <Slider
             marks={[
-              { value: 100, label: 'R1 @ 100' },
+              { value: 0, label: 'R1' },
               { value: 999, label: '999' },
             ]}
             step={1}
@@ -86,7 +86,7 @@ const MosaOutputRangeControl = props => {
           />
           <Slider
             marks={[
-              { value: 100, label: 'R2 @ 100' },
+              { value: 0, label: 'R2' },
               { value: 999, label: '999' },
             ]}
             step={1}
