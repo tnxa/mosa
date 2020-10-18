@@ -3,7 +3,7 @@ module.exports = {
     title: `mosa`,
     description: `web ui for maxsr hardware`,
     author: `tnxa`,
-    webSerialKey: `Ag3HjMYm1q/dRcD3ZMnHqzgJD1dzpdrJK28whunErMSmVrjSkLfUZOlsrJPkYmi13FI2P6AMuHVF076GSTnvBQ4AAABTeyJvcmlnaW4iOiJodHRwczovL3RyeW1vc2EubmV0bGlmeS5hcHA6NDQzIiwiZmVhdHVyZSI6IlNlcmlhbCIsImV4cGlyeSI6MTU5ODU3ODg0MH0=`,
+    webSerialKey: `Ansl/FL5lkDc62+KkI02f5IOizKSOOpe2qmYxZS7uAjWzl/UxGyqXY+q0bxxFDB1s1+dt0CZIGu5SEnnlA9MvwgAAABTeyJvcmlnaW4iOiJodHRwczovL3RyeW1vc2EubmV0bGlmeS5hcHA6NDQzIiwiZmVhdHVyZSI6IlNlcmlhbCIsImV4cGlyeSI6MTYwNjYyNjI4MH0=`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
