@@ -48,7 +48,7 @@ export const useSerial = () => {
     if (!port) {
       try {
         const newPort = await navigator.serial.requestPort()
-        await newPort.open({ baudrate: 115200 })
+        await newPort.open({ baudRate: 115200 })
         setPort(newPort)
 
         // eslint-disable-next-line no-undef
