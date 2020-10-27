@@ -3,15 +3,14 @@ import React, { useState } from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
+import { Card, Typography, CardContent, Grid, Divider } from '@material-ui/core'
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
 
 import { defaultTarget, defaultRange } from '../config/defaults'
 
 import { useSerial } from '../hooks/useSerialHook'
 import { scaleAxes, constructTCodeCommand } from '../utils/tcode'
 
-import MosaConnect from '../components/MosaComponents/MosaConnect'
 import MosaOutputRangeControl from '../components/MosaComponents/MosaOutputRangeControl'
 import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
 import MosaMotionGridControl from '../components/MosaComponents/MosaMotionGridControl'
@@ -22,24 +21,52 @@ const IndexPage = () => {
   const isSerialAvailable =
     typeof window !== 'undefined' && 'serial' in navigator // https://github.com/gatsbyjs/gatsby/issues/6859
 
-  const [connect, disconnect, writeToSerial] = useSerial()
+  const [connectToSerial, disconnectFromSerial, writeToSerial] = useSerial()
   const [connected, setConnected] = useState(false)
 
   const [target, setTarget] = useState(defaultTarget)
   const [outputRange, setOutputRange] = useState(defaultRange)
 
-  const handleConnect = async () => {
+  const [inputMethod, setSelectedInputMethod] = useState('web')
+  const [outputMethod, setSelectedOutputMethod] = useState()
+
+  const handleInputMethodChange = (event, newInputMethod) => {
+    setSelectedInputMethod(newInputMethod)
+  }
+
+  // todo: make this better
+  const handleOutputMethodChange = (event, newOutputMethod) => {
+    switch (newOutputMethod) {
+      case '':
+        disconnectFromSerial() // and eventually all other input methods
+        break
+      case 'serial':
+        isSerialAvailable && connected
+          ? handleDisconnectFromSerial()
+          : handleConnectToSerial()
+        break
+      default:
+        console.log(
+          '[OSR][WARN] Unknown input method selected: ' + newOutputMethod
+        )
+    }
+    setSelectedOutputMethod(newOutputMethod)
+  }
+
+  const handleConnectToSerial = async () => {
     try {
-      await connect()
+      await connectToSerial()
       setConnected(true)
     } catch (e) {
       console.error(e)
+      setConnected(false)
+      setSelectedOutputMethod('') // connecting failed :(
       // TODO: set error state, create/catch via error boundary?
     }
   }
-  const handleDisconnect = async () => {
+  const handleDisconnectFromSerial = async () => {
     commandRobot(defaultTarget, 1)
-    await disconnect()
+    await disconnectFromSerial()
     setConnected(false)
   }
 
@@ -58,12 +85,59 @@ const IndexPage = () => {
       <SEO title="Controls" />
       <Grid container spacing={2} justify="center">
         <Grid item xs={12} md={4} lg={3}>
-          <MosaConnect
-            connected={connected}
-            enabled={isSerialAvailable}
-            connect={handleConnect}
-            disconnect={handleDisconnect}
-          />
+          <Card>
+            <CardContent>
+              <Typography>Input: {!inputMethod && 'none selected'} </Typography>
+              <ToggleButtonGroup
+                value={inputMethod}
+                exclusive
+                onChange={handleInputMethodChange}
+              >
+                <ToggleButton value="web">WEB</ToggleButton>
+                <ToggleButton value="remote" disabled>
+                  REMOTE
+                </ToggleButton>
+              </ToggleButtonGroup>
+              <br />
+              <br />
+              <Typography>
+                Output: {!outputMethod && 'none selected'}
+              </Typography>
+              <ToggleButtonGroup
+                value={outputMethod}
+                exclusive
+                onChange={handleOutputMethodChange}
+              >
+                <ToggleButton
+                  value="serial"
+                  disabled={!isSerialAvailable}
+                  selected={
+                    isSerialAvailable && connected && outputMethod === 'serial'
+                  }
+                >
+                  SERIAL
+                </ToggleButton>
+                <ToggleButton value="bluetooth" disabled>
+                  SR-VIS
+                </ToggleButton>
+              </ToggleButtonGroup>
+              <br />
+              <br />
+              <Typography variant="caption"> (more I/O coming soon)</Typography>
+              {!isSerialAvailable && ( // if serial not available, explain
+                <>
+                  <br />
+                  <Typography>
+                    Could not detect serial capabilities. Please use the latest
+                    version of Chrome, open <code>chrome://flags</code>, and set
+                    <code>#enable-experimental-web-platform-features</code>{' '}
+                    (note that these are experimental features, use at your own
+                    risk, etc etc)
+                  </Typography>
+                </>
+              )}
+            </CardContent>
+          </Card>
           <hr />
           <MosaOutputRangeControl
             outputRange={outputRange}
