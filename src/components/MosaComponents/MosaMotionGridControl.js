@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Height from '@material-ui/icons/Height'
 import SyncAlt from '@material-ui/icons/SyncAlt'
 
-import { clampedNum, clampedFloat } from '../../utils/clamp'
+import { clampedNum } from '../../utils/clamp'
 
 const useStyles = makeStyles({
   graphCard: {
