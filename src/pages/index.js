@@ -37,7 +37,7 @@ const IndexPage = () => {
   // todo: make this better
   const handleOutputMethodChange = (event, newOutputMethod) => {
     switch (newOutputMethod) {
-      case '':
+      case null: // none selected or active is deselected
         disconnectFromSerial() // and eventually all other input methods
         break
       case 'serial':
@@ -46,7 +46,7 @@ const IndexPage = () => {
           : handleConnectToSerial()
         break
       default:
-        console.log(
+        console.warn(
           '[OSR][WARN] Unknown input method selected: ' + newOutputMethod
         )
     }
@@ -60,7 +60,7 @@ const IndexPage = () => {
     } catch (e) {
       console.error(e)
       setConnected(false)
-      setSelectedOutputMethod('') // connecting failed :(
+      setSelectedOutputMethod(null) // connecting failed :(
       // TODO: set error state, create/catch via error boundary?
     }
   }
@@ -117,7 +117,7 @@ const IndexPage = () => {
                 >
                   SERIAL
                 </ToggleButton>
-                <ToggleButton value="bluetooth" disabled>
+                <ToggleButton value="visualizer" disabled>
                   SR-VIS
                 </ToggleButton>
               </ToggleButtonGroup>
