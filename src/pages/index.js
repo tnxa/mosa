@@ -109,20 +109,18 @@ const IndexPage = () => {
                 onChange={handleOutputMethodChange}
               >
                 {isSerialAvailable && (
-                  <ToggleButton
-                    value="serial"
-                    selected={connected && outputMethod === 'serial'}
-                  >
-                    SERIAL
-                  </ToggleButton>
+                  <ToggleButton value="serial">SERIAL</ToggleButton>
                 )}
-                <ToggleButton value="visualizer" disabled>
-                  SR-VIS
-                </ToggleButton>
+                <ToggleButton value="visualizer">SR-VIS</ToggleButton>
               </ToggleButtonGroup>
               <br />
               <br />
-              <Typography variant="caption"> (more I/O coming soon)</Typography>
+              <Typography variant="caption">
+                (more I/O coming soon
+                {outputMethod === 'visualizer' &&
+                  '- visualizer still in development'}
+                )
+              </Typography>
               {!isSerialAvailable && ( // if serial not available, explain
                 <>
                   <br />
