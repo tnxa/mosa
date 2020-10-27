@@ -1,0 +1,32 @@
+export const defaultTarget = {
+  L0: 500,
+  L1: 500,
+  L2: 500,
+  R0: 500,
+  R1: 500,
+  R2: 500,
+  V0: 0,
+  V1: 0,
+  V2: 0,
+}
+
+export const defaultRange = {
+  L0Min: 100,
+  L0Max: 900,
+  L1Min: 100,
+  L1Max: 900,
+  L2Min: 100,
+  L2Max: 900,
+  R0Min: 100,
+  R0Max: 900,
+  R1Min: 100,
+  R1Max: 900,
+  R2Min: 100,
+  R2Max: 900,
+  V0Min: 0,
+  V0Max: 900,
+  V1Min: 0,
+  V1Max: 900,
+  V2Min: 0,
+  V2Max: 900,
+}
