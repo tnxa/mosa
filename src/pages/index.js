@@ -36,20 +36,21 @@ const IndexPage = () => {
 
   // todo: make this better
   const handleOutputMethodChange = (event, newOutputMethod) => {
+    if (connected) handleDisconnectFromSerial() // eventually, all methods
+
     switch (newOutputMethod) {
       case null: // none selected or active is deselected
-        handleDisconnectFromSerial() // and eventually all other input methods
+        console.log('[OSR][INFO] Disconnecting from outputs.')
         break
       case 'serial':
-        isSerialAvailable && connected
-          ? handleDisconnectFromSerial()
-          : handleConnectToSerial()
+        handleConnectToSerial()
         break
       default:
         console.warn(
           '[OSR][WARN] Unknown input method selected: ' + newOutputMethod
         )
     }
+
     setSelectedOutputMethod(newOutputMethod)
   }
 
