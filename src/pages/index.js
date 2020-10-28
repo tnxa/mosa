@@ -38,7 +38,7 @@ const IndexPage = () => {
   const handleOutputMethodChange = (event, newOutputMethod) => {
     switch (newOutputMethod) {
       case null: // none selected or active is deselected
-        disconnectFromSerial() // and eventually all other input methods
+        handleDisconnectFromSerial() // and eventually all other input methods
         break
       case 'serial':
         isSerialAvailable && connected
