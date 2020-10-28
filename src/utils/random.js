@@ -1,4 +1,4 @@
-import { clampedNum } from './clampedNum'
+import { clampedFloat } from './clamp'
 
 // given an array, return a random item from that array
 export const chooseRandom = choices => {

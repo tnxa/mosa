@@ -17,6 +17,7 @@ import MosaMotionGridControl from '../components/MosaComponents/MosaMotionGridCo
 import MosaVibeControl from '../components/MosaComponents/MosaVibeControl'
 import MosaSineControl from '../components/MosaComponents/MosaSineControl'
 import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
+import MosaRandomControl from '../components/MosaComponents/MosaRandomControl'
 
 const IndexPage = () => {
   const isSerialAvailable =
@@ -181,6 +182,12 @@ const IndexPage = () => {
         <Grid item xs={12} md={4} lg={4}>
           <MosaMotionGridControl
             connected={connected}
+            commandRobot={commandRobot}
+          />
+          <hr />
+          <MosaRandomControl
+            connected={connected}
+            target={target}
             commandRobot={commandRobot}
           />
           <hr />
