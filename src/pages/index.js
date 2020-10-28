@@ -16,6 +16,7 @@ import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
 import MosaMotionGridControl from '../components/MosaComponents/MosaMotionGridControl'
 import MosaVibeControl from '../components/MosaComponents/MosaVibeControl'
 import MosaSineControl from '../components/MosaComponents/MosaSineControl'
+import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
 
 const IndexPage = () => {
   const isSerialAvailable =
@@ -141,12 +142,7 @@ const IndexPage = () => {
               </ToggleButtonGroup>
               <br />
               <br />
-              <Typography variant="caption">
-                (more I/O coming soon
-                {outputMethod === 'visualizer' &&
-                  '- visualizer still in development'}
-                )
-              </Typography>
+              <Typography variant="caption">(more I/O coming soon)</Typography>
               {!isSerialAvailable && ( // if serial not available, explain
                 <>
                   <br />
@@ -161,6 +157,8 @@ const IndexPage = () => {
               )}
             </CardContent>
           </Card>
+          <hr />
+          <MosaVisualizer target={target} />
           <hr />
           <MosaOutputRangeControl
             outputRange={outputRange}
