@@ -16,6 +16,7 @@ import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
 import MosaMotionGridControl from '../components/MosaComponents/MosaMotionGridControl'
 import MosaVibeControl from '../components/MosaComponents/MosaVibeControl'
 import MosaSineControl from '../components/MosaComponents/MosaSineControl'
+import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
 
 const IndexPage = () => {
   const isSerialAvailable =
@@ -161,6 +162,8 @@ const IndexPage = () => {
               )}
             </CardContent>
           </Card>
+          <hr />
+          <MosaVisualizer target={target} />
           <hr />
           <MosaOutputRangeControl
             outputRange={outputRange}
