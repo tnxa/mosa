@@ -36,7 +36,10 @@ const IndexPage = () => {
 
   // todo: make this better
   const handleOutputMethodChange = (event, newOutputMethod) => {
-    if (connected) handleDisconnectFromSerial() // eventually, all methods
+    if (connected) {
+      handleDisconnectFromSerial() // eventually, all methods
+      handleDisconnectFromVisualization()
+    }
 
     switch (newOutputMethod) {
       case null: // none selected or active is deselected
@@ -45,9 +48,12 @@ const IndexPage = () => {
       case 'serial':
         handleConnectToSerial()
         break
+      case 'visualizer':
+        handleConnectToVisualization()
+        break
       default:
         console.warn(
-          '[OSR][WARN] Unknown input method selected: ' + newOutputMethod
+          '[OSR][WARN] Unknown output method selected: ' + newOutputMethod
         )
     }
 
@@ -71,6 +77,15 @@ const IndexPage = () => {
     setConnected(false)
   }
 
+  const handleConnectToVisualization = async () => {
+    console.log('[OSR][DEV] Connecting to SR Visualization')
+    setConnected(true)
+  }
+  const handleDisconnectFromVisualization = async () => {
+    console.log('[OSR][DEV] Disconnecting from SR Visualization')
+    setConnected(false)
+  }
+
   const commandRobot = (destination, interval) => {
     // persist target to state
     const newTarget = { ...target, ...destination }
@@ -78,7 +93,17 @@ const IndexPage = () => {
 
     // tell the robot what to do
     const scaledDestination = scaleAxes(newTarget, outputRange)
-    writeToSerial(constructTCodeCommand(scaledDestination, interval))
+    const command = constructTCodeCommand(scaledDestination, interval)
+    switch (outputMethod) {
+      case 'serial':
+        writeToSerial(command)
+        break
+      case 'visualizer':
+        console.log('[OSR][DEV] Output to vis: ' + command)
+        break
+      default:
+        console.warn('[OSR][DEV] unknown output method - command: ' + command)
+    }
   }
 
   return (
