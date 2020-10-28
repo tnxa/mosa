@@ -142,12 +142,7 @@ const IndexPage = () => {
               </ToggleButtonGroup>
               <br />
               <br />
-              <Typography variant="caption">
-                (more I/O coming soon
-                {outputMethod === 'visualizer' &&
-                  '- visualizer still in development'}
-                )
-              </Typography>
+              <Typography variant="caption">(more I/O coming soon)</Typography>
               {!isSerialAvailable && ( // if serial not available, explain
                 <>
                   <br />
