@@ -1,12 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
 import { Card, Typography, CardContent } from '@material-ui/core'
-import {
-  Canvas,
-  useFrame,
-  useThree,
-  perspectiveCamera,
-} from 'react-three-fiber'
+import { Canvas, useFrame, useThree } from 'react-three-fiber'
 
 const Cylinder = props => {
   const mesh = useRef()
@@ -18,9 +13,9 @@ const Cylinder = props => {
       ref={mesh}
       scale={[1, 1, 1]}
       position={[
-        -1.5 + (L2 / 1000) * 3,
+        -1.5 + (L2 / 1000) * 3 + Math.sin((R1 / 1000 - 0.5) * Math.PI),
         -1.5 + (L0 / 1000) * 3,
-        1.5 - (L1 / 1000) * 3,
+        1.5 - (L1 / 1000) * 3 - Math.sin((R2 / 1000 - 0.5) * Math.PI),
       ]}
       rotation={[
         -Math.PI / 4 + ((-R2 / 1000) * Math.PI) / 2,
