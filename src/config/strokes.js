@@ -146,7 +146,7 @@ export const strokes = {
   Orbit: {
     name: 'Orbit',
     getStroke: (position, step) => {
-      const strokeTime = 2000 // 2 seconds
+      const strokeTime = 1 + 3 * Math.random() * 1000 // 1-3 seconds
       const steps = strokeTime / step
       const oL0 = position.L0,
         oR1 = position.R1,
@@ -157,11 +157,15 @@ export const strokes = {
         pR1 = oR1, // previous L1 starts as original L1
         pR2 = oR2 // previous L2 starts as original L2
 
+      // randomize the R1/R2 directions once per "orbit"
+      const R1dir = Math.random() >= 0.5 ? 1 : -1,
+        R2dir = Math.random() >= 0.5 ? 1 : -1
+
       for (let i = 1; i <= steps; i++) {
         // choose next points
         const nL0 = pL0 + 5 * Math.cos((i / steps) * Math.PI),
-          nR1 = pR1 + 20 * Math.cos((i / steps) * 2 * Math.PI),
-          nR2 = pR2 + 15 * Math.sin((i / steps) * 2 * Math.PI) // can we find a way to center this?
+          nR1 = pR1 + R1dir * 20 * Math.cos((i / steps) * 2 * Math.PI),
+          nR2 = pR2 + R2dir * 15 * Math.sin((i / steps) * 2 * Math.PI) // can we find a way to center this?
 
         // append next to stroke points
         stroke.push({
