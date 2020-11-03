@@ -32,8 +32,8 @@ export const strokes = {
             0,
             1000
           ),
-          nR1 = (pR1 + 500) / 2, // eventually move to middle
-          nR2 = (pR2 + 500) / 2 // eventually move to middle
+          nR1 = clampedNum((pR1 + 500) / 2, 0, 1000), // eventually move to middle
+          nR2 = clampedNum((pR2 + 500) / 2, 0, 1000) // eventually move to middle
 
         // append next to stroke points
         stroke.push({
@@ -74,8 +74,8 @@ export const strokes = {
             0,
             1000
           ),
-          nR1 = (pR1 + 500) / 2, // eventually move to middle
-          nR2 = (pR2 + 500) / 2 // eventually move to middle
+          nR1 = clampedNum((pR1 + 500) / 2, 0, 1000), // eventually move to middle
+          nR2 = clampedNum((pR2 + 500) / 2, 0, 1000) // eventually move to middle
 
         // append next to stroke points
         stroke.push({
@@ -126,8 +126,8 @@ export const strokes = {
           velocity + (1 / 2) * acceleration + (1 / 6) * direction * jerk
 
         const nL0 = clampedNum((pL0 += positional), 0, 1000),
-          nR1 = (pR1 + 500) / 2, // eventually move to middle
-          nR2 = (pR2 + 500) / 2 // eventually move to middle
+          nR1 = clampedNum((pR1 + 500) / 2, 0, 1000), // eventually move to middle
+          nR2 = clampedNum((pR2 + 500) / 2, 0, 1000) // eventually move to middle
 
         stroke.push({
           L0: nL0,
