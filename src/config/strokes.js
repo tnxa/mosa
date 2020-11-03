@@ -146,7 +146,7 @@ export const strokes = {
   Orbit: {
     name: 'Orbit',
     getStroke: (position, step) => {
-      const strokeTime = 1 + 3 * Math.random() * 1000 // 1-3 seconds
+      const strokeTime = 1 + 3 * Math.random() * 1000 // 1-4 seconds
       const steps = strokeTime / step
       const oL0 = position.L0,
         oR1 = position.R1,
