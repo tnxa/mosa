@@ -49,6 +49,11 @@ export const MosaRandomControl = props => {
     } // if not running & connected, no-op
   }, step) // next execution time will be `step` away
 
+  const toggleRunning = running => {
+    running ? setTimer(0) : setStrokeCounter(0)
+    setRunning(!running)
+  }
+
   return (
     <Card>
       <CardContent>
@@ -77,7 +82,7 @@ export const MosaRandomControl = props => {
       </CardContent>
       <CardActions>
         <Button
-          onClick={() => setRunning(!running)}
+          onClick={() => toggleRunning(running)}
           variant="contained"
           color="default"
           disabled={!connected}
