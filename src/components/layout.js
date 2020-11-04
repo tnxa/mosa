@@ -78,7 +78,12 @@ const Layout = ({ children }) => {
                 <Link href="https://www.gatsbyjs.org">Gatsby</Link> and{' '}
                 <Link href="http://material-ui.com/">Material UI</Link>. Code
                 available on Github @{' '}
-                <Link href="https://github.com/tnxa/mosa">tnxa/mosa</Link>
+                <Link href="https://github.com/tnxa/mosa">tnxa/mosa</Link>.{' '}
+                Feedback, issues, ideas?{' '}
+                <Link href="https://forms.gle/1q9RnBDLcZpgm6po6">
+                  Share here
+                </Link>
+                .
               </footer>
             </div>
           </div>
