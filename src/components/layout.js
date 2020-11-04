@@ -5,14 +5,47 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from 'react'
+import React, { useMemo, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header'
 import './layout.css'
+import { createMuiTheme, ThemeProvider, Link } from '@material-ui/core'
 
 const Layout = ({ children }) => {
+  const [themePreference, setThemePreference] = React.useState('light')
+
+  useEffect(() => {
+    const existingPreference = localStorage.getItem('themePreference')
+    if (existingPreference) {
+      setThemePreference(existingPreference)
+    } else {
+      setThemePreference('light')
+      localStorage.setItem('themePreference', 'light')
+    }
+  }, [setThemePreference])
+
+  const theme = useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: themePreference,
+        },
+      }),
+    [themePreference]
+  )
+
+  const toggleTheme = () => {
+    if (themePreference === 'light') {
+      setThemePreference('dark')
+      localStorage.setItem('themePreference', 'dark')
+    } else {
+      setThemePreference('light')
+      localStorage.setItem('themePreference', 'light')
+    }
+  }
+
   return (
     <StaticQuery
       query={graphql`
@@ -25,25 +58,31 @@ const Layout = ({ children }) => {
         }
       `}
       render={data => (
-        <div style={{ minHeight: '100vh', backgroundColor: '#FFF' }}>
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <div
-            style={{
-              margin: `0 auto`,
-              maxWidth: 1280,
-              padding: `0px 1.0875rem 1.45rem`,
-              paddingTop: 100,
-            }}
-          >
-            <main>{children}</main>
-            <footer style={{ paddingTop: 10 }}>
-              © {new Date().getFullYear()}, Built with{` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a> and{' '}
-              <a href="http://material-ui.com/">Material UI</a>. Code available
-              on Github @ <a href="https://github.com/tnxa/mosa">tnxa/mosa</a>
-            </footer>
+        <ThemeProvider theme={theme}>
+          <div style={{ minHeight: '100vh' }}>
+            <Header
+              siteTitle={data.site.siteMetadata.title}
+              themePreference={themePreference}
+              toggleTheme={toggleTheme}
+            />
+            <div
+              style={{
+                margin: `0 auto`,
+                maxWidth: 1280,
+                padding: `4.5rem 1.0875rem 1.45rem`,
+              }}
+            >
+              <main>{children}</main>
+              <footer style={{ paddingTop: 10 }}>
+                © {new Date().getFullYear()}, Built with{` `}
+                <Link href="https://www.gatsbyjs.org">Gatsby</Link> and{' '}
+                <Link href="http://material-ui.com/">Material UI</Link>. Code
+                available on Github @{' '}
+                <Link href="https://github.com/tnxa/mosa">tnxa/mosa</Link>
+              </footer>
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       )}
     />
   )

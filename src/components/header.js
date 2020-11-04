@@ -1,8 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-
-import { Link } from 'gatsby'
-
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -20,6 +17,8 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import AppsIcon from '@material-ui/icons/Apps'
+import Brightness7Icon from '@material-ui/icons/Brightness7'
+import Brightness4Icon from '@material-ui/icons/Brightness4'
 
 const drawerWidth = 240
 
@@ -80,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, themePreference, toggleTheme }) => {
   const classes = useStyles()
   const theme = useTheme()
 
@@ -117,6 +116,13 @@ const Header = ({ siteTitle }) => {
           <Typography variant="h6" color="inherit">
             {siteTitle}
           </Typography>
+          <IconButton onClick={toggleTheme} style={{ color: 'white' }}>
+            {themePreference === 'light' ? (
+              <Brightness4Icon />
+            ) : (
+              <Brightness7Icon />
+            )}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -139,14 +145,12 @@ const Header = ({ siteTitle }) => {
         </div>
         <Divider />
         <List>
-          <Link to="/">
-            <ListItem button>
-              <ListItemIcon>
-                <AppsIcon />
-              </ListItemIcon>
-              <ListItemText>Controls</ListItemText>
-            </ListItem>
-          </Link>
+          <ListItem button>
+            <ListItemIcon>
+              <AppsIcon />
+            </ListItemIcon>
+            <ListItemText>Controls</ListItemText>
+          </ListItem>
         </List>
       </Drawer>
     </div>
