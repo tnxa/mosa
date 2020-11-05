@@ -13,7 +13,7 @@ import { scaleAxes, constructTCodeCommand } from '../utils/tcode'
 
 import MosaOutputRangeControl from '../components/MosaComponents/MosaOutputRangeControl'
 import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
-import MosaMotionGridControl from '../components/MosaComponents/MosaMotionGridControl'
+import MosaPlanarControl from '../components/MosaComponents/MosaPlanarControl'
 import MosaVibeControl from '../components/MosaComponents/MosaVibeControl'
 import MosaSineControl from '../components/MosaComponents/MosaSineControl'
 import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
@@ -180,7 +180,7 @@ const IndexPage = () => {
           />
         </Grid>
         <Grid item xs={12} md={4} lg={4}>
-          <MosaMotionGridControl
+          <MosaPlanarControl
             connected={connected}
             commandRobot={commandRobot}
           />
