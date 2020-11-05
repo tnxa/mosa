@@ -85,14 +85,14 @@ export const MosaMotionGridControl = props => {
 
   return (
     <Card className={graphCard}>
-      <Typography variant="h4">
-        <Height />
-        L0 x R1
-        <SyncAlt />
-      </Typography>
-
-      <p>scroll to adjust R2</p>
       <CardContent>
+        <Typography variant="h4">
+          <Height />
+          L0 x R1
+          <SyncAlt />
+        </Typography>
+
+        <p>scroll to adjust R2</p>
         <button
           className={graphGrid}
           onMouseMove={handleMouseMove}
@@ -101,14 +101,16 @@ export const MosaMotionGridControl = props => {
         >
           +
         </button>
+        <br />
+        <br />
+        <Typography>
+          {!connected ? (
+            <i>connect to your MAxSR to start interacting</i>
+          ) : (
+            <i>hint: click on the grid to {running ? 'disable' : 'enable '}</i>
+          )}
+        </Typography>
       </CardContent>
-      <p>
-        {!connected ? (
-          <i>connect to your MAxSR to start interacting</i>
-        ) : (
-          <i>hint: click on the grid to {running ? 'disable' : 'enable '}</i>
-        )}
-      </p>
     </Card>
   )
 }
