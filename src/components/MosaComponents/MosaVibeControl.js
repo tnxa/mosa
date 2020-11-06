@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
   vibeControls: {
     minWidth: 300,
+    paddingTop: 16,
   },
   vibeSlider: {
     marginLeft: 24,
@@ -34,24 +35,26 @@ export const MosaVibeControl = props => {
 
   return (
     <Card className={classes.vibeControls}>
-      <VibeSlider
-        vibe="V0"
-        value={target.V0}
-        handleChange={handleVibeChange}
-        connected={connected}
-      />
-      <VibeSlider
-        vibe="V1"
-        value={target.V1}
-        handleChange={handleVibeChange}
-        connected={connected}
-      />
-      <VibeSlider
-        vibe="V2"
-        value={target.V2}
-        handleChange={handleVibeChange}
-        connected={connected}
-      />
+      <CardContent>
+        <VibeSlider
+          vibe="V0"
+          value={target.V0}
+          handleChange={handleVibeChange}
+          connected={connected}
+        />
+        <VibeSlider
+          vibe="V1"
+          value={target.V1}
+          handleChange={handleVibeChange}
+          connected={connected}
+        />
+        <VibeSlider
+          vibe="V2"
+          value={target.V2}
+          handleChange={handleVibeChange}
+          connected={connected}
+        />
+      </CardContent>
       <CardActions>
         <Button
           onClick={stopAllVibes}
