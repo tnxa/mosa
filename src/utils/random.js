@@ -1,10 +1,18 @@
 import { clampedFloat } from './clamp'
 
-// given an array, return a random item from that array
-export const chooseRandom = choices => {
-  const keys = Object.keys(choices)
+// given an object, return a random value from that object -- TODO: refactor this
+export const chooseRandomStroke = choices => {
+  const enabledChoicesArray = Object.entries(choices).filter(
+    stroke => stroke[1].enabled
+  )
+  const enabledChoices = {}
+  for (const index in enabledChoicesArray) {
+    enabledChoices[enabledChoicesArray[index][0]] =
+      enabledChoicesArray[index][1]
+  }
+  const keys = Object.keys(enabledChoices)
   const randex = Math.floor(Math.random() * keys.length)
-  return choices[keys[randex]]
+  return enabledChoices[keys[randex]]
 }
 
 // insert min/max, get random in between - thanks, MDN

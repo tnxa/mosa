@@ -11,6 +11,7 @@ import { clampedNum } from '../utils/clamp'
 export const strokes = {
   ShortStrokes: {
     name: 'Short Stroke',
+    enabled: true,
     getStroke: (position, step) => {
       const strokeTime = 800 // .8 seconds
       const distanceFactor = 0.5
@@ -53,6 +54,7 @@ export const strokes = {
   },
   LongStrokes: {
     name: 'Long Stroke',
+    enabled: true,
     getStroke: (position, step) => {
       const strokeTime = 800 // .8 seconds
       const distanceFactor = 0.9
@@ -95,6 +97,7 @@ export const strokes = {
   },
   LongJerky: {
     name: 'Long Jerk',
+    enabled: true,
     getStroke: (position, step) => {
       // const strokeTime = 2000 // 2 seconds
       const maxPercentTravel = 0.75
@@ -145,6 +148,7 @@ export const strokes = {
   },
   Orbit: {
     name: 'Orbit',
+    enabled: true,
     getStroke: (position, step) => {
       const strokeTime = 1 + 3 * Math.random() * 1000 // 1-4 seconds
       const steps = strokeTime / step
@@ -164,6 +168,51 @@ export const strokes = {
       for (let i = 1; i <= steps; i++) {
         // choose next points
         const nL0 = pL0 + 5 * Math.cos((i / steps) * Math.PI),
+          nR1 = pR1 + R1dir * 20 * Math.cos((i / steps) * 2 * Math.PI),
+          nR2 = pR2 + R2dir * 15 * Math.sin((i / steps) * 2 * Math.PI) // can we find a way to center this?
+
+        // append next to stroke points
+        stroke.push({
+          L0: nL0,
+          R1: nR1,
+          R2: nR2,
+        })
+        // for next iteration, new points become previous points
+        pL0 = nL0
+        pR1 = nR1
+        pR2 = nR2
+      }
+      return stroke
+    },
+  },
+
+  Hops: {
+    name: 'Hops',
+    enabled: true,
+    getStroke: (position, step) => {
+      const strokeTime = 1 + 3 * Math.random() * 1000 // 1-4 seconds
+      const steps = strokeTime / step
+      const oL0 = position.L0,
+        oR1 = position.R1,
+        oR2 = position.R2
+
+      let stroke = [],
+        pL0 = oL0, // previous L0 starts as original L0
+        pR1 = oR1, // previous L1 starts as original L1
+        pR2 = oR2 // previous L2 starts as original L2
+
+      // randomize the R1/R2 directions once per "hop"
+      const R1dir = Math.random() >= 0.5 ? 1 : -1,
+        R2dir = Math.random() >= 0.5 ? 1 : -1
+
+      for (let i = 1; i <= steps; i++) {
+        // choose next points
+        const x = (i / steps) * Math.PI
+        const nL0 = clampedNum(
+            pL0 + 50 * ((Math.sin(x) * Math.cos(x)) / Math.abs(Math.sin(x))),
+            0,
+            1000
+          ),
           nR1 = pR1 + R1dir * 20 * Math.cos((i / steps) * 2 * Math.PI),
           nR2 = pR2 + R2dir * 15 * Math.sin((i / steps) * 2 * Math.PI) // can we find a way to center this?
 
