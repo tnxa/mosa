@@ -4,12 +4,15 @@ import {
   Card,
   CardActions,
   CardContent,
+  FormControlLabel,
+  FormGroup,
   Slider,
+  Switch,
   Typography,
 } from '@material-ui/core'
 
 import { useInterval } from '../../hooks/useIntervalHook'
-import { chooseRandom } from '../../utils/random'
+import { chooseRandomStroke } from '../../utils/random'
 
 import { strokes } from '../../config/strokes'
 
@@ -17,11 +20,14 @@ export const MosaRandomControl = props => {
   const { connected, target, commandRobot } = props
 
   const [running, setRunning] = useState(false)
+  const [availableStrokes, setAvailableStrokes] = useState(strokes) // start with all strokes enabled by default
 
   const [timer, setTimer] = useState(0) // start with no seconds on the clock
   const [step, setStep] = useState(50)
   const [randomness, setRandomness] = useState(30)
-  const [strokeType, setStrokeType] = useState(chooseRandom(strokes))
+  const [strokeType, setStrokeType] = useState(
+    chooseRandomStroke(availableStrokes)
+  ) // todo: refactor this
   const [stroke, setStroke] = useState(strokeType.getStroke(target, step))
   const [strokeCounter, setStrokeCounter] = useState(0)
 
@@ -30,7 +36,9 @@ export const MosaRandomControl = props => {
       if (timer <= 0) {
         // do we change stroke?
         const newStrokeType =
-          Math.random() * 100 < randomness ? chooseRandom(strokes) : strokeType
+          Math.random() * 100 < randomness
+            ? chooseRandomStroke(availableStrokes) // todo: refactor this
+            : strokeType
 
         const stroke = newStrokeType.getStroke(target, step)
         const newTimer = step * stroke.length // derive next timing from length of stroke
@@ -52,6 +60,16 @@ export const MosaRandomControl = props => {
   const toggleRunning = running => {
     running ? setTimer(0) : setStrokeCounter(0)
     setRunning(!running)
+  }
+
+  const handleStrokeChange = e => {
+    setAvailableStrokes({
+      ...availableStrokes,
+      [e.target.value]: {
+        ...availableStrokes[e.target.value],
+        enabled: e.target.checked,
+      },
+    })
   }
 
   return (
@@ -79,6 +97,25 @@ export const MosaRandomControl = props => {
           marks={[{ value: 50, label: '50ms/step' }]}
           disabled={running}
         />
+        <FormGroup row>
+          {Object.entries(availableStrokes).map(([k, stroke]) => {
+            return (
+              <FormControlLabel
+                key={stroke.name}
+                label={stroke.name}
+                control={
+                  <Switch
+                    checked={stroke.enabled}
+                    onChange={handleStrokeChange}
+                    name={stroke.name}
+                    value={k}
+                    color={'primary'}
+                  />
+                }
+              />
+            )
+          })}
+        </FormGroup>
       </CardContent>
       <CardActions>
         <Button
