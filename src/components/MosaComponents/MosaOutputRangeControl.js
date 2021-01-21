@@ -62,6 +62,18 @@ const MosaOutputRangeControl = props => {
           />
           <Slider
             marks={[
+              { value: 0, label: 'L3' },
+              { value: 999, label: '999' },
+            ]}
+            step={1}
+            min={0}
+            max={999}
+            valueLabelDisplay="auto"
+            value={[outputRange.L3Min, outputRange.L3Max]}
+            onChange={(e, value) => handleRangeChange('L3', value)}
+          />
+          <Slider
+            marks={[
               { value: 0, label: 'R0' },
               { value: 999, label: '999' },
             ]}
