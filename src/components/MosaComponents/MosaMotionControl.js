@@ -36,7 +36,18 @@ export const MosaMotionControl = props => {
   }
 
   const homeAxes = () => {
-    commandRobot({ L0: 500, L1: 500, L2: 500, R0: 500, R1: 500, R2: 500 }, 1)
+    commandRobot(
+      {
+        L0: 500,
+        L1: 500,
+        L2: 500,
+        L3: 500,
+        R0: 500,
+        R1: 500,
+        R2: 500,
+      },
+      1
+    )
   }
 
   return (
@@ -107,6 +118,19 @@ export const MosaMotionControl = props => {
           value={target.R0}
           handleValueChange={(event, newValue) => {
             handleAxisChange('R0', newValue)
+          }}
+        />
+      </CardContent>
+      <CardContent className={classes.rotators}>
+        <HorizontalSlider
+          marks={[
+            { value: 0, label: 'L3 OPEN' },
+            { value: 999, label: 'L3 CLOSE' },
+          ]}
+          connected={connected}
+          value={target.L3}
+          handleValueChange={(event, newValue) => {
+            handleAxisChange('L3', newValue)
           }}
         />
       </CardContent>

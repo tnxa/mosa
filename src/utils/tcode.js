@@ -37,6 +37,8 @@ export const scaleAxes = (axes, outputRange) => {
     L1Max,
     L2Min,
     L2Max,
+    L3Min,
+    L3Max,
     R0Min,
     R0Max,
     R1Min,
@@ -59,6 +61,9 @@ export const scaleAxes = (axes, outputRange) => {
     }),
     ...(axes.L2 !== undefined && {
       L2: L2Min + (axes.L2 / 1000) * (L2Max - L2Min),
+    }),
+    ...(axes.L3 !== undefined && {
+      L3: L3Min + (axes.L3 / 1000) * (L3Max - L3Min),
     }),
     ...(axes.R0 !== undefined && {
       R0: R0Min + (axes.R0 / 1000) * (R0Max - R0Min),
