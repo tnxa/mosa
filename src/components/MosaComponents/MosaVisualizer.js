@@ -47,7 +47,7 @@ const RotationIndicator = props => {
       rotation={[
         -Math.PI / 4 + ((-R2 / 1000) * Math.PI) / 2,
         Math.PI * (3 / 4) + ((R1 / 1000) * Math.PI) / 2,
-        Math.PI * 0.5 + (R0 / 1000) * Math.PI * (135 / 90) - 0.8, // Tip cylinder forward + Rotation * 90 degrees * convert 90 to 135 degrees - offset back to center
+        Math.PI * 0.5 + (-R0 / 1000) * Math.PI * (135 / 90) - 0.8, // Tip cylinder forward + Rotation * 90 degrees * convert 90 to 135 degrees - offset back to center
       ]}
     >
       <cylinderBufferGeometry args={[0.2, 0.2, 2.5, 8]} />
