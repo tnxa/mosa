@@ -156,7 +156,7 @@ const HorizontalSlider = props => {
       step={1}
       min={0}
       max={999}
-      value={value}
+      value={Math.round(value)}
       onChange={handleValueChange}
       valueLabelDisplay={connected ? 'on' : 'off'}
       disabled={!connected}
@@ -183,7 +183,7 @@ const VerticalSlider = props => {
           min={0}
           max={999}
           orientation="vertical"
-          value={value}
+          value={Math.round(value)}
           onChange={handleValueChange}
           valueLabelDisplay={connected ? 'on' : 'off'}
           disabled={!connected}
