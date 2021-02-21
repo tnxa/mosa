@@ -11,7 +11,7 @@ import { defaultRange, defaultTarget } from '../config/defaults'
 import { useSerial } from '../hooks/useSerialHook'
 import { scaleAxes, constructTCodeCommand } from '../utils/tcode'
 
-import { SettingsContext } from '../../gatsby-browser'
+import { SettingsContext } from '../context/SettingsContext'
 
 import MosaOutputRangeControl from '../components/MosaComponents/MosaOutputRangeControl'
 import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
