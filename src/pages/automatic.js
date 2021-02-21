@@ -16,7 +16,7 @@ import MosaSineControl from '../components/MosaComponents/MosaSineControl'
 import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
 import MosaRandomControl from '../components/MosaComponents/MosaRandomControl'
 
-const IndexPage = () => {
+const AutomaticPage = () => {
   return (
     <MosaContext.Consumer>
       {({
@@ -32,7 +32,7 @@ const IndexPage = () => {
         updateSettings,
       }) => (
         <Layout>
-          <SEO title="Home" />
+          <SEO title="Automatic" />
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} md={4} lg={3}>
               <Card>
@@ -88,31 +88,14 @@ const IndexPage = () => {
                 </CardContent>
               </Card>
               <hr />
-              <MosaVisualizer target={target} />
-              <hr />
+
               <MosaOutputRangeControl
                 settings={settings}
                 updateSettings={updateSettings}
               />
             </Grid>
             <Grid item xs={12} md={4} lg={5}>
-              <MosaMotionControl
-                connected={connected}
-                target={target}
-                commandRobot={commandRobot}
-              />
-              <hr />
-              <MosaVibeControl
-                connected={connected}
-                target={target}
-                commandRobot={commandRobot}
-              />
-            </Grid>
-            <Grid item xs={12} md={4} lg={4}>
-              <MosaPlanarControl
-                connected={connected}
-                commandRobot={commandRobot}
-              />
+              <MosaVisualizer target={target} />
               <hr />
               <MosaRandomControl
                 connected={connected}
@@ -126,6 +109,7 @@ const IndexPage = () => {
                 commandRobot={commandRobot}
               />
             </Grid>
+            <Grid item xs={12} md={4} lg={4}></Grid>
           </Grid>
           &nbsp;
           <Divider />
@@ -135,4 +119,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default AutomaticPage

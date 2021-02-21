@@ -12,11 +12,9 @@ import MosaOutputRangeControl from '../components/MosaComponents/MosaOutputRange
 import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
 import MosaPlanarControl from '../components/MosaComponents/MosaPlanarControl'
 import MosaVibeControl from '../components/MosaComponents/MosaVibeControl'
-import MosaSineControl from '../components/MosaComponents/MosaSineControl'
 import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
-import MosaRandomControl from '../components/MosaComponents/MosaRandomControl'
 
-const IndexPage = () => {
+const TestBedPage = () => {
   return (
     <MosaContext.Consumer>
       {({
@@ -32,7 +30,7 @@ const IndexPage = () => {
         updateSettings,
       }) => (
         <Layout>
-          <SEO title="Home" />
+          <SEO title="Testbed" />
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} md={4} lg={3}>
               <Card>
@@ -88,21 +86,15 @@ const IndexPage = () => {
                 </CardContent>
               </Card>
               <hr />
-              <MosaVisualizer target={target} />
-              <hr />
               <MosaOutputRangeControl
                 settings={settings}
                 updateSettings={updateSettings}
               />
             </Grid>
             <Grid item xs={12} md={4} lg={5}>
-              <MosaMotionControl
-                connected={connected}
-                target={target}
-                commandRobot={commandRobot}
-              />
+              <MosaVisualizer target={target} />
               <hr />
-              <MosaVibeControl
+              <MosaMotionControl
                 connected={connected}
                 target={target}
                 commandRobot={commandRobot}
@@ -114,13 +106,7 @@ const IndexPage = () => {
                 commandRobot={commandRobot}
               />
               <hr />
-              <MosaRandomControl
-                connected={connected}
-                target={target}
-                commandRobot={commandRobot}
-              />
-              <hr />
-              <MosaSineControl
+              <MosaVibeControl
                 connected={connected}
                 target={target}
                 commandRobot={commandRobot}
@@ -135,4 +121,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default TestBedPage
