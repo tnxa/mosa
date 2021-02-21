@@ -9,14 +9,14 @@ import {
 } from '@material-ui/core'
 
 const MosaOutputRangeControl = props => {
-  const { outputRange, setOutputRange } = props
+  const { settings, updateSettings } = props
 
   const handleRangeChange = (axis, value) => {
     const [min, max] = value
     const newValue = {}
     newValue[axis + 'Min'] = min
     newValue[axis + 'Max'] = max
-    setOutputRange({ ...outputRange, ...newValue })
+    updateSettings({ ...settings, ...newValue })
   }
 
   return (
@@ -26,122 +26,162 @@ const MosaOutputRangeControl = props => {
         <FormGroup row>
           <Slider
             marks={[
-              { value: 100, label: 'L0 @ 100' },
-              { value: 900, label: '900' },
+              { value: 0, label: 'L0' },
+              {
+                value: (settings.L0Min + settings.L0Max) / 2,
+                label: settings.L0Min + ' - ' + settings.L0Max,
+              },
+              { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.L0Min, outputRange.L0Max]}
+            value={[settings.L0Min, settings.L0Max]}
             onChange={(e, value) => handleRangeChange('L0', value)}
           />
           <Slider
             marks={[
-              { value: 100, label: 'L1 @ 100' },
-              { value: 900, label: '900' },
+              { value: 0, label: 'L1' },
+              {
+                value: (settings.L1Min + settings.L1Max) / 2,
+                label: settings.L1Min + ' - ' + settings.L1Max,
+              },
+              { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.L1Min, outputRange.L1Max]}
+            value={[settings.L1Min, settings.L1Max]}
             onChange={(e, value) => handleRangeChange('L1', value)}
           />
           <Slider
             marks={[
-              { value: 100, label: 'L2 @ 100' },
-              { value: 900, label: '900' },
+              { value: 0, label: 'L2' },
+              {
+                value: (settings.L2Min + settings.L2Max) / 2,
+                label: settings.L2Min + ' - ' + settings.L2Max,
+              },
+              { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.L2Min, outputRange.L2Max]}
+            value={[settings.L2Min, settings.L2Max]}
             onChange={(e, value) => handleRangeChange('L2', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'L3' },
+              {
+                value: (settings.L3Min + settings.L3Max) / 2,
+                label: settings.L3Min + ' - ' + settings.L3Max,
+              },
               { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.L3Min, outputRange.L3Max]}
+            value={[settings.L3Min, settings.L3Max]}
             onChange={(e, value) => handleRangeChange('L3', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'R0' },
+              {
+                value: (settings.R0Min + settings.R0Max) / 2,
+                label: settings.R0Min + ' - ' + settings.R0Max,
+              },
               { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.R0Min, outputRange.R0Max]}
+            value={[settings.R0Min, settings.R0Max]}
             onChange={(e, value) => handleRangeChange('R0', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'R1' },
+              {
+                value: (settings.R1Min + settings.R1Max) / 2,
+                label: settings.R1Min + ' - ' + settings.R1Max,
+              },
               { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.R1Min, outputRange.R1Max]}
+            value={[settings.R1Min, settings.R1Max]}
             onChange={(e, value) => handleRangeChange('R1', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'R2' },
+              {
+                value: (settings.R2Min + settings.R2Max) / 2,
+                label: settings.R2Min + ' - ' + settings.R2Max,
+              },
               { value: 999, label: '999' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.R2Min, outputRange.R2Max]}
+            value={[settings.R2Min, settings.R2Max]}
             onChange={(e, value) => handleRangeChange('R2', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'V0' },
+              {
+                value: (settings.V0Min + settings.V0Max) / 2,
+                label: settings.V0Min + ' - ' + settings.V0Max,
+              },
               { value: 999, label: 'MAX' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.V0Min, outputRange.V0Max]}
+            value={[settings.V0Min, settings.V0Max]}
             onChange={(e, value) => handleRangeChange('V0', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'V1' },
+              {
+                value: (settings.V1Min + settings.V1Max) / 2,
+                label: settings.V1Min + ' - ' + settings.V1Max,
+              },
               { value: 999, label: 'MAX' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.V1Min, outputRange.V1Max]}
+            value={[settings.V1Min, settings.V1Max]}
             onChange={(e, value) => handleRangeChange('V1', value)}
           />
           <Slider
             marks={[
               { value: 0, label: 'V2' },
+              {
+                value: (settings.V2Min + settings.V2Max) / 2,
+                label: settings.V2Min + ' - ' + settings.V2Max,
+              },
               { value: 999, label: 'MAX' },
             ]}
             step={1}
             min={0}
             max={999}
             valueLabelDisplay="auto"
-            value={[outputRange.V2Min, outputRange.V2Max]}
+            value={[settings.V2Min, settings.V2Max]}
             onChange={(e, value) => handleRangeChange('V2', value)}
           />
         </FormGroup>

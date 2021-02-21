@@ -17,9 +17,9 @@ const Layout = ({ children }) => {
   const [themePreference, setThemePreference] = React.useState('light')
 
   useEffect(() => {
-    const existingPreference = localStorage.getItem('themePreference')
-    if (existingPreference) {
-      setThemePreference(existingPreference)
+    const existingThemePreference = localStorage.getItem('themePreference')
+    if (existingThemePreference) {
+      setThemePreference(existingThemePreference)
     } else {
       setThemePreference('light')
       localStorage.setItem('themePreference', 'light')

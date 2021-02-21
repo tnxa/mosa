@@ -4,4 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-require('typeface-roboto');
+import React from 'react'
+import { SettingsProvider } from './src/context/SettingsContext'
+
+require('typeface-roboto')
+
+export const wrapRootElement = ({ element }) => (
+  <SettingsProvider>{element}</SettingsProvider>
+)
