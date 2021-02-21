@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { defaultRange } from '../config/defaults'
 
-export const SettingsContext = React.createContext()
+export const SettingsContext = React.createContext({
+  settings: defaultRange,
+})
 
 export const SettingsProvider = ({ children }) => {
   const [mosaSettings, setMosaSettings] = useState(defaultRange)

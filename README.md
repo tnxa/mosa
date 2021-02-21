@@ -21,7 +21,9 @@ Once installation completes:
 
 ## Context
 
-This started out as an experiment in [React][reactjs]/[Gatsby][gatsbyjs] using [web serial][webserial] to interface with OSR firmware and hardware, primarily by producing [t-code][t-code-spec] to be used by the OSR3, OSR2, and now SR6 as developed by [Tempest][tempestvr].
+This started out as an experiment in [React][reactjs]/[Gatsby][gatsbyjs] using [web serial][webserial] to interface with OSR firmware and hardware.
+
+This is accomplished by producing [t-code][t-code-spec] to be used by the OSR3, OSR2, and now SR6 as developed by [Tempest][tempestvr], as well as any other devices which accept [t-code][t-code-spec].
 
 Made possible by the [Web Serial API][webserial]. Bootstrapped with [Gatsby][gatsbyjs] & the [material-ui-starter][material-ui-starter].
 
