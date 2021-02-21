@@ -6,6 +6,7 @@ import { scaleAxes, constructTCodeCommand } from '../utils/tcode'
 export const MosaContext = React.createContext({
   settings: defaultRange,
   target: defaultTarget,
+  inputMethod: 'web',
 })
 
 export const MosaProvider = ({ children }) => {
