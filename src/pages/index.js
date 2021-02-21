@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -32,7 +32,7 @@ const IndexPage = () => {
         updateSettings,
       }) => (
         <Layout>
-          <SEO title="Controls" />
+          <SEO title="Home" />
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} md={4} lg={3}>
               <Card>

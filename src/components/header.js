@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
+import { Link } from 'gatsby'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -145,12 +146,30 @@ const Header = ({ siteTitle, themePreference, toggleTheme }) => {
         </div>
         <Divider />
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <AppsIcon />
-            </ListItemIcon>
-            <ListItemText>Controls</ListItemText>
-          </ListItem>
+          <Link to="/">
+            <ListItem button>
+              <ListItemIcon>
+                <AppsIcon />
+              </ListItemIcon>
+              <ListItemText>Home</ListItemText>
+            </ListItem>
+          </Link>
+          <Link to="/testbed">
+            <ListItem button>
+              <ListItemIcon>
+                <AppsIcon />
+              </ListItemIcon>
+              <ListItemText>Testbed</ListItemText>
+            </ListItem>
+          </Link>
+          <Link to="/automatic">
+            <ListItem button>
+              <ListItemIcon>
+                <AppsIcon />
+              </ListItemIcon>
+              <ListItemText>Automatic</ListItemText>
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
     </div>
