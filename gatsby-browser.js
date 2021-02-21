@@ -5,10 +5,10 @@
  */
 
 import React from 'react'
-import { SettingsProvider } from './src/context/SettingsContext'
+import { MosaProvider } from './src/context/MosaContext'
 
 require('typeface-roboto')
 
 export const wrapRootElement = ({ element }) => (
-  <SettingsProvider>{element}</SettingsProvider>
+  <MosaProvider>{element}</MosaProvider>
 )

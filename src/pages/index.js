@@ -6,12 +6,7 @@ import SEO from '../components/seo'
 import { Card, Typography, CardContent, Grid, Divider } from '@material-ui/core'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
 
-import { defaultRange, defaultTarget } from '../config/defaults'
-
-import { useSerial } from '../hooks/useSerialHook'
-import { scaleAxes, constructTCodeCommand } from '../utils/tcode'
-
-import { SettingsContext } from '../context/SettingsContext'
+import { MosaContext } from '../context/MosaContext'
 
 import MosaOutputRangeControl from '../components/MosaComponents/MosaOutputRangeControl'
 import MosaMotionControl from '../components/MosaComponents/MosaMotionControl'
@@ -22,96 +17,20 @@ import MosaVisualizer from '../components/MosaComponents/MosaVisualizer'
 import MosaRandomControl from '../components/MosaComponents/MosaRandomControl'
 
 const IndexPage = () => {
-  const isSerialAvailable =
-    typeof window !== 'undefined' && 'serial' in navigator // https://github.com/gatsbyjs/gatsby/issues/6859
-
-  const [connectToSerial, disconnectFromSerial, writeToSerial] = useSerial()
-  const [connected, setConnected] = useState(false)
-
-  const [target, setTarget] = useState(defaultTarget)
-
-  const [inputMethod, setSelectedInputMethod] = useState('web')
-  const [outputMethod, setSelectedOutputMethod] = useState()
-
-  const handleInputMethodChange = (event, newInputMethod) => {
-    setSelectedInputMethod(newInputMethod)
-  }
-
-  // todo: make this better
-  const handleOutputMethodChange = async (event, newOutputMethod) => {
-    if (connected) {
-      await handleDisconnectFromSerial() // eventually, all methods
-      await handleDisconnectFromVisualization()
-    }
-
-    switch (newOutputMethod) {
-      case null: // none selected or active is deselected
-        console.log('[OSR][INFO] Disconnecting from outputs.')
-        break
-      case 'serial':
-        handleConnectToSerial()
-        break
-      case 'visualizer':
-        handleConnectToVisualization()
-        break
-      default:
-        console.warn(
-          '[OSR][WARN] Unknown output method selected: ' + newOutputMethod
-        )
-    }
-
-    setSelectedOutputMethod(newOutputMethod)
-  }
-
-  const handleConnectToSerial = async () => {
-    try {
-      await connectToSerial()
-      setConnected(true)
-    } catch (e) {
-      console.error(e)
-      setConnected(false)
-      setSelectedOutputMethod(null) // connecting failed :(
-      // TODO: set error state, create/catch via error boundary?
-    }
-  }
-  const handleDisconnectFromSerial = async () => {
-    commandRobot(defaultTarget, 1, defaultRange)
-    await disconnectFromSerial()
-    setConnected(false)
-  }
-
-  const handleConnectToVisualization = async () => {
-    console.log('[OSR][DEV] Connecting to SR Visualization')
-    setConnected(true)
-  }
-  const handleDisconnectFromVisualization = async () => {
-    console.log('[OSR][DEV] Disconnecting from SR Visualization')
-    setConnected(false)
-  }
-
-  const commandRobot = (destination, interval, settings) => {
-    // persist target to state
-    const newTarget = { ...target, ...destination }
-    setTarget(newTarget)
-
-    // tell the robot what to do
-    const scaledDestination = scaleAxes(newTarget, settings)
-    const command = constructTCodeCommand(scaledDestination, interval)
-    switch (outputMethod) {
-      case 'serial':
-        writeToSerial(command)
-        break
-      case 'visualizer':
-        console.log('[OSR][DEV] Output to vis: ' + command)
-        break
-      default:
-        console.warn('[OSR][DEV] unknown output method - command: ' + command)
-    }
-  }
-
   return (
-    <SettingsContext.Consumer>
-      {({ settings, updateSettings }) => (
+    <MosaContext.Consumer>
+      {({
+        isSerialAvailable,
+        connected,
+        commandRobot,
+        target,
+        inputMethod,
+        handleInputMethodChange,
+        outputMethod,
+        handleOutputMethodChange,
+        settings,
+        updateSettings,
+      }) => (
         <Layout>
           <SEO title="Controls" />
           <Grid container spacing={2} justify="center">
@@ -180,41 +99,31 @@ const IndexPage = () => {
               <MosaMotionControl
                 connected={connected}
                 target={target}
-                commandRobot={(destination, interval) =>
-                  commandRobot(destination, interval, settings)
-                }
+                commandRobot={commandRobot}
               />
               <hr />
               <MosaVibeControl
                 connected={connected}
                 target={target}
-                commandRobot={(destination, interval) =>
-                  commandRobot(destination, interval, settings)
-                }
+                commandRobot={commandRobot}
               />
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
               <MosaPlanarControl
                 connected={connected}
-                commandRobot={(destination, interval) =>
-                  commandRobot(destination, interval, settings)
-                }
+                commandRobot={commandRobot}
               />
               <hr />
               <MosaRandomControl
                 connected={connected}
                 target={target}
-                commandRobot={(destination, interval) =>
-                  commandRobot(destination, interval, settings)
-                }
+                commandRobot={commandRobot}
               />
               <hr />
               <MosaSineControl
                 connected={connected}
                 target={target}
-                commandRobot={(destination, interval) =>
-                  commandRobot(destination, interval, settings)
-                }
+                commandRobot={commandRobot}
               />
             </Grid>
           </Grid>
@@ -222,7 +131,7 @@ const IndexPage = () => {
           <Divider />
         </Layout>
       )}
-    </SettingsContext.Consumer>
+    </MosaContext.Consumer>
   )
 }
 
