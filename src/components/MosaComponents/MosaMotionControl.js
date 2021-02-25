@@ -84,8 +84,8 @@ export const MosaMotionControl = props => {
       <CardContent className={classes.rotators}>
         <HorizontalSlider
           marks={[
-            { value: 0, label: 'L2 LEFT' },
-            { value: 999, label: 'L2 RIGHT' },
+            { value: 0, label: 'L2 RIGHT' },
+            { value: 999, label: 'L2 LEFT' },
           ]}
           connected={connected}
           value={target.L2}
