@@ -87,10 +87,12 @@ export const MosaMotionControl = props => {
             { value: 0, label: 'L2 RIGHT' },
             { value: 999, label: 'L2 LEFT' },
           ]}
+          flipped={true}
           connected={connected}
-          value={target.L2}
+          value={-target.L2}
+          valueLabelFormat={x => -x}
           handleValueChange={(event, newValue) => {
-            handleAxisChange('L2', newValue)
+            handleAxisChange('L2', -newValue)
           }}
         />
       </CardContent>
@@ -149,15 +151,27 @@ export const MosaMotionControl = props => {
 }
 
 const HorizontalSlider = props => {
-  const { marks, connected, value, handleValueChange } = props
+  const {
+    marks,
+    connected,
+    value,
+    handleValueChange,
+    flipped,
+    valueLabelFormat,
+  } = props
   return (
     <Slider
-      marks={marks}
+      marks={
+        flipped
+          ? marks.map(mark => ({ value: -mark.value, label: mark.label }))
+          : marks
+      }
       step={1}
-      min={0}
-      max={999}
+      min={flipped ? -999 : 0}
+      max={flipped ? 0 : 999}
       value={Math.round(value)}
       onChange={handleValueChange}
+      valueLabelFormat={valueLabelFormat}
       valueLabelDisplay={connected ? 'on' : 'off'}
       disabled={!connected}
       track={false}
