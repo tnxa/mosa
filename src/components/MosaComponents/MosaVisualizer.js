@@ -13,7 +13,7 @@ const Cylinder = props => {
       ref={mesh}
       scale={[1, 1, 1]}
       position={[
-        -1.5 + (L2 / 1000) * 3 + Math.sin((R1 / 1000 - 0.5) * Math.PI),
+        1.5 - (L2 / 1000) * 3 + Math.sin((R1 / 1000 - 0.5) * Math.PI),
         -1.5 + (L0 / 1000) * 3,
         1.5 - (L1 / 1000) * 3 - Math.sin((R2 / 1000 - 0.5) * Math.PI),
       ]}
@@ -40,7 +40,7 @@ const RotationIndicator = props => {
       ref={mesh}
       scale={[1, 1, 1]}
       position={[
-        -1.5 + (L2 / 1000) * 3 + Math.sin((R1 / 1000 - 0.5) * Math.PI),
+        1.5 - (L2 / 1000) * 3 + Math.sin((R1 / 1000 - 0.5) * Math.PI),
         -1.5 + (L0 / 1000) * 3,
         1.5 - (L1 / 1000) * 3 - Math.sin((R2 / 1000 - 0.5) * Math.PI),
       ]}
