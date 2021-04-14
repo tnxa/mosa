@@ -19,7 +19,6 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
-            webSerialKey
           }
         }
       }
@@ -71,10 +70,6 @@ function SEO({ description, lang, meta, title }) {
         {
           name: `twitter:description`,
           content: metaDescription,
-        },
-        {
-          'http-equiv': `origin-trial`,
-          content: site.siteMetadata.webSerialKey,
         },
       ].concat(meta)}
     />
