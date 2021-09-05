@@ -74,22 +74,6 @@ const MosaOutputRangeControl = props => {
           />
           <Slider
             marks={[
-              { value: 0, label: 'L3' },
-              {
-                value: (settings.L3Min + settings.L3Max) / 2,
-                label: settings.L3Min + ' - ' + settings.L3Max,
-              },
-              { value: 999, label: '999' },
-            ]}
-            step={1}
-            min={0}
-            max={999}
-            valueLabelDisplay="auto"
-            value={[settings.L3Min, settings.L3Max]}
-            onChange={(e, value) => handleRangeChange('L3', value)}
-          />
-          <Slider
-            marks={[
               { value: 0, label: 'R0' },
               {
                 value: (settings.R0Min + settings.R0Max) / 2,
@@ -183,6 +167,22 @@ const MosaOutputRangeControl = props => {
             valueLabelDisplay="auto"
             value={[settings.V2Min, settings.V2Max]}
             onChange={(e, value) => handleRangeChange('V2', value)}
+          />
+          <Slider
+            marks={[
+              { value: 0, label: 'A0' },
+              {
+                value: (settings.A0Min + settings.A0Max) / 2,
+                label: settings.A0Min + ' - ' + settings.A0Max,
+              },
+              { value: 999, label: '999' },
+            ]}
+            step={1}
+            min={0}
+            max={999}
+            valueLabelDisplay="auto"
+            value={[settings.A0Min, settings.A0Max]}
+            onChange={(e, value) => handleRangeChange('A0', value)}
           />
         </FormGroup>
       </CardContent>

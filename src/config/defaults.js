@@ -2,13 +2,13 @@ export const defaultTarget = {
   L0: 500,
   L1: 500,
   L2: 500,
-  L3: 500,
   R0: 500,
   R1: 500,
   R2: 500,
   V0: 0,
   V1: 0,
   V2: 0,
+  A0: 500,
 }
 
 export const defaultRange = {
@@ -18,8 +18,6 @@ export const defaultRange = {
   L1Max: 900,
   L2Min: 100,
   L2Max: 900,
-  L3Min: 0,
-  L3Max: 999,
   R0Min: 100,
   R0Max: 900,
   R1Min: 100,
@@ -32,4 +30,6 @@ export const defaultRange = {
   V1Max: 900,
   V2Min: 0,
   V2Max: 900,
+  A0Min: 0,
+  A0Max: 999,
 }
