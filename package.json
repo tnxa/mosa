@@ -23,7 +23,7 @@
     "react-dom": "^16.14.0",
     "react-helmet": "^5.2.1",
     "react-three-fiber": "^5.1.4",
-    "three": "^0.125.0",
+    "three": "^0.137.0",
     "typeface-roboto": "0.0.54"
   },
   "devDependencies": {
